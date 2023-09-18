@@ -18,4 +18,4 @@ use App\Http\Controllers\UserController;
 
 
 Route::view('/ciao', 'ciao');
-Route::view('/ciao', 'ciao')->name('ciao');
+Route::post('/guests', 'GuestsController@store')->name('guests.store');
