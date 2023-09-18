@@ -27,4 +27,8 @@ class Guest extends Model
     {
         return self::where('last_name', $last_name)->get();
     }
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
