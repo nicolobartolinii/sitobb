@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('guests', function (Blueprint $table) {
-            $table->increments('guest_id')->primary();
+            $table->increments('guest_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email_address', 50)->nullable();
