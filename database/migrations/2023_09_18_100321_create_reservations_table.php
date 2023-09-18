@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('guest_id'); // id ospite
             $table->foreign('guest_id')->references('guest_id')->on('guests'); // id ospite
+            $table->unsignedInteger('room_id'); // id stanza
             $table->foreign('room_id')->references('room_id')->on('rooms'); // id stanza
             $table->date('arrival_date'); // data arrivo
             $table->date('departure_date'); // data partenza
