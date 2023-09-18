@@ -2,7 +2,7 @@
 
 
 
-@section('content')
+
     <h1>Lista delle Stanze</h1>
     <a href="{{ route('rooms.create') }}">Aggiungi nuova stanza</a>
 
@@ -20,5 +20,5 @@
             </li>
         @endforeach
     </ul>
-@endsection
+
 

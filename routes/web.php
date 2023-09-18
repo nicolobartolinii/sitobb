@@ -35,7 +35,7 @@ use App\Http\Controllers\UserController;
 Route::view('/ciao', 'ciao');
 
 Route::resource('rooms', RoomController::class);
-Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
+//Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
 
 Route::resource('guests', GuestController::class);
 Route::resource('reservations', ReservationController::class);

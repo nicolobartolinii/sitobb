@@ -1,8 +1,6 @@
 {{-- resources/views/rooms/create.blade.php --}}
 
 
-
-@section('content')
     <h1>Crea Nuova Stanza</h1>
 
     <form action="{{ route('rooms.store') }}" method="post">
@@ -18,4 +16,3 @@
 
         <button type="submit">Salva</button>
     </form>
-@endsection

@@ -1,7 +1,5 @@
 {{-- resources/views/rooms/edit.blade.php --}}
 
-
-@section('content')
     <h1>Modifica Stanza: {{ $room->name }}</h1>
 
     <form action="{{ route('rooms.update', $room) }}" method="post">
@@ -18,4 +16,4 @@
 
         <button type="submit">Aggiorna</button>
     </form>
-@endsection
+
