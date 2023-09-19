@@ -9,8 +9,7 @@ class Guest extends Model
 {
     use HasFactory;
     protected $primaryKey = 'guest_id';
-
-
+    public $timestamps = false;
 
     protected $fillable = [
         'first_name',
