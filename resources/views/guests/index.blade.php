@@ -16,7 +16,7 @@
 
         <h1>Elenco ospiti</h1>
     
-        <table>
+        <table class="custom-table">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -31,6 +31,7 @@
                     <th>Indirizzo</th>
                     <th>Codice fiscale</th>
                     <th>Partita IVA</th>
+                    <th>Azioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,12 +49,20 @@
                         <td>{{ $guest->address ?? 'N/A' }}</td>
                         <td>{{ $guest->tax_id ?? 'N/A' }}</td>
                         <td>{{ $guest->vat_number ?? 'N/A' }}</td>
+                        <td class="actions">
+                            <div class="btn-group">
+                                <a class="action-btn edit" href="{{ route('guests.edit', $guest) }}">Modifica</a>
+                                {!! Form::open(['route' => ['guests.destroy', $guest], 'method' => 'DELETE', 'class' => 'inline-form']) !!}
+                                    <button class="action-btn delete" type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo ospite?')">Elimina</button>
+                                {!! Form::close() !!}
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     
-        <a href="{{ route('guests.create') }}">Inserisci un nuovo opsite</a>
+        <a href="{{ route('guests.create') }}" class="action-btn edit">Inserisci un nuovo opsite</a>
     
     </div>
 
