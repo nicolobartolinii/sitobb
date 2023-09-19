@@ -51,7 +51,7 @@ Route::get('/reservations/events', [ReservationController::class, 'getReservatio
 
 
 
-Route::get('/reservations/show-events', [ReservationController::class, 'showEventsInHtml']);
+Route::get('/show-events', [ReservationController::class, 'showEventsInHtml']);
 
 Route::get('/test', function() {
     return 'Questa è una pagina di test';
