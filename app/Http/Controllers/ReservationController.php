@@ -55,4 +55,55 @@ class ReservationController extends Controller
         $reservation->delete();
         return redirect()->route('reservations.index');
     }
+
+
+//    public function getReservationsForCalendar() {
+//        $reservations = Reservation::all();
+//        $events = [];
+//
+//        foreach($reservations as $reservation) {
+//            $color = 'red'; // default color
+//
+//            // per colorare ma non ci riesco
+//            if($reservation->room_id == 1) {
+//                $color = 'blue';
+//            }
+//
+//            $events[] = [
+//                'title' => "Prenotato",
+//                'start' => $reservation->arrival_date,
+//                'end' => $reservation->departure_date,
+//                'color' => $color,
+//            ];
+//        }
+//
+//        return response()->json($events);
+//    }
+    public function getReservationsForCalendar() {
+        return response()->json(['message' => 'Questa è una risposta di test']);
+    }
+
+    public function showEventsInHtml() {
+        $reservations = Reservation::all();
+        $events = [];
+
+        foreach($reservations as $reservation) {
+            $color = 'red'; // default color
+            if($reservation->room_id == 1) {
+                $color = 'blue';
+            }
+
+            $events[] = [
+                'title' => "Prenotato",
+                'start' => $reservation->arrival_date,
+                'end' => $reservation->departure_date,
+                'color' => $color,
+            ];
+        }
+
+        return redirect()->route('reservations.events', ['events' => $events]);
+    }
+
+
+
 }

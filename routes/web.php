@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\GuestController;
+//use App\Http\Controllers\GuestsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
@@ -21,7 +21,6 @@ use App\Http\Controllers\UserController;
 
 
 /*
- * |--------------------------------------------------------------------------|
  * SPIEGAZIONE ROUTE RESOURCE
 |Questo comando definisce le seguenti rotte:
 |GET /rooms - per visualizzare un elenco delle risorse (metodo index del controller).
@@ -40,4 +39,20 @@ Route::resource('rooms', RoomController::class);
 //Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
 Route::resource('reservations', ReservationController::class);
 
-Route::resource('guests', GuestController::class);
+//Route::resource('guests', GuestsController::class);
+
+
+Route::get('/calendar', function () {
+    return view('calendar');
+});
+
+Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
+Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
+
+
+
+Route::get('/reservations/show-events', [ReservationController::class, 'showEventsInHtml']);
+
+Route::get('/test', function() {
+    return 'Questa è una pagina di test';
+});

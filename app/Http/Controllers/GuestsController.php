@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use App\Models\Guest;
+use App\Models\Room;
 
 class GuestsController extends Controller
 {
