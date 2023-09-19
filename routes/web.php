@@ -45,9 +45,7 @@ Route::resource('reservations', ReservationController::class);
 Route::get('/calendar', function () {
     return view('calendar');
 });
-
-Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
-Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
+Route::get('/events', [ReservationController::class, 'getReservationsForCalendar']);
 
 
 

@@ -68,6 +68,9 @@ class ReservationController extends Controller
             if($reservation->room_id == 1) {
                 $color = 'blue';
             }
+            if($reservation->room_id == 2) {
+                $color = 'green';
+            }
 
             $events[] = [
                 'title' => "Prenotato",

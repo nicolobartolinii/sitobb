@@ -22,11 +22,14 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                 },
-                events: '/reservations/events'
+                events: '/sitobb/public/events'
             });
             calendar.render();
         });
     </script>
+
+
+
 </head>
 <body>
 <div class="container">
