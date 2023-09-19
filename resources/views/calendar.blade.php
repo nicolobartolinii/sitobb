@@ -22,7 +22,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                 },
-                events: '/sitobb/public/events',
+                events: './events',
 
 
             eventClick: function(arg) {
@@ -30,7 +30,7 @@
                 const reservationId = event.extendedProps.reservation_id;
 
                 // Reindirizza l'utente alla pagina dei dettagli dell'evento
-                window.location.href = `/sitobb/public/reservations/${reservationId}`;
+                window.location.href = `./reservations/${reservationId}`;
             }
             });
             calendar.render();
