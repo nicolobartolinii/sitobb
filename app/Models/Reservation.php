@@ -13,5 +13,8 @@ class Reservation extends Model
     protected $dates = ['arrival_date', 'departure_date'];
     public $timestamps = false;
 
-}
+    public function guest() {
+        return $this->belongsTo(Guest::class, 'guest_id', 'guest_id');
+    }
 
+}
