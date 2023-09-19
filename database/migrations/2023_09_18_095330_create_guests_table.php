@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('guest_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
+            $table->date('date_of_birth')->nullable();
             $table->string('email_address', 50)->nullable();
             $table->string('phone_number', 50)->nullable();
             $table->string('nationality', 50)->nullable();

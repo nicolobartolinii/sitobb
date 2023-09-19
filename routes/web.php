@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
-//use App\Http\Controllers\GuestsController;
+use App\Http\Controllers\GuestsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
@@ -36,6 +36,7 @@ use App\Http\Controllers\UserController;
 Route::view('/ciao', 'ciao');
 
 Route::resource('rooms', RoomController::class);
+Route::resource('guests', GuestsController::class);
 //Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
 Route::resource('reservations', ReservationController::class);
 

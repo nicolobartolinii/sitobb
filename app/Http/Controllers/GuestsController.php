@@ -4,85 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Reservation;
 use App\Models\Guest;
-use App\Models\Room;
 
 class GuestsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $guests = Guest::all();
+        return view('guests.index', ['guests' => $guests]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('guests.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        /* $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'date_of_birth' => 'date',
+            'email_address' => 'email|max:50',
+            'phone_number' => 'string|max:50',
+            'nationality' => 'string|max:50',
+            'document_number' => 'string|max:50',
+            'city' => 'string|max:50',
+            'state' => 'string|max:50',
+            'zip_code' => 'string|max:50',
+            'address' => 'string|max:50',
+            'tax_id' => 'string|max:50',
+            'vat_number' => 'string|max:50',
+        ]); */
+
+        Guest::create($request->all());
+
+        return redirect()->route('guests.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Guest $guest)
     {
-        //
+        return view('guests.show', ['guest' => $guest]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Guest $guest)
     {
-        //
+        return view('guests.edit', ['guest' => $guest]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Guest $guest)
     {
-        //
+        $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'date_of_birth' => 'date',
+            'email_address' => 'email|max:50',
+            'phone_number' => 'string|max:50',
+            'nationality' => 'string|max:50',
+            'document_number' => 'string|max:50',
+            'city' => 'string|max:50',
+            'state' => 'string|max:50',
+            'zip_code' => 'string|max:50',
+            'address' => 'string|max:50',
+            'tax_id' => 'string|max:50',
+            'vat_number' => 'string|max:50',
+        ]);
+
+        $guest->update($request->all());
+
+        return redirect()->route('guests.index')->with('success', 'Informazioni dell\'ospite aggiornate con successo.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Guest $guest)
     {
-        //
+        $guest->delete();
+        return redirect()->route('guests.index')->with('success', 'Ospite eliminato con successo.');
     }
 }
