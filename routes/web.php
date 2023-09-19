@@ -35,6 +35,10 @@ use App\Http\Controllers\UserController;
 
 Route::view('/ciao', 'ciao');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 Route::resource('rooms', RoomController::class);
 Route::resource('guests', GuestsController::class);
 //Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');

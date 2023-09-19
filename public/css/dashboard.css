@@ -1,0 +1,43 @@
+/* dashboard.css */
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f4; /* Sfondo leggermente grigio per contrastare il bianco dei blocchi */
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.dashboard-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #2980b9; /* Colore principale, come nelle pagine precedenti */
+  background-color: #fff; /* Colore di sfondo leggermente grigio per distinguere i blocchi */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera per dare profondità */
+  transition: transform 0.2s;
+}
+
+.dashboard-block:hover {
+  transform: scale(1.05); /* Ingrandimento leggero per l'effetto hover */
+}
+
+.dashboard-block h2 {
+  font-size: 1.5em;
+  margin: 0;
+  font-weight: 500; /* Peso normale, non troppo grassetto ma neanche troppo leggero */
+}
