@@ -57,31 +57,33 @@ class ReservationController extends Controller
     }
 
 
-//    public function getReservationsForCalendar() {
-//        $reservations = Reservation::all();
-//        $events = [];
-//
-//        foreach($reservations as $reservation) {
-//            $color = 'red'; // default color
-//
-//            // per colorare ma non ci riesco
-//            if($reservation->room_id == 1) {
-//                $color = 'blue';
-//            }
-//
-//            $events[] = [
-//                'title' => "Prenotato",
-//                'start' => $reservation->arrival_date,
-//                'end' => $reservation->departure_date,
-//                'color' => $color,
-//            ];
-//        }
-//
-//        return response()->json($events);
-//    }
     public function getReservationsForCalendar() {
-        return response()->json(['message' => 'Questa è una risposta di test']);
+        $reservations = Reservation::all();
+        $events = [];
+
+        foreach($reservations as $reservation) {
+            $color = 'red'; // default color
+
+            // per colorare ma non ci riesco
+            if($reservation->room_id == 1) {
+                $color = 'blue';
+            }
+            if($reservation->room_id == 2) {
+                $color = 'green';
+            }
+
+            $events[] = [
+                'title' => "Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number . "",
+                'start' => $reservation->arrival_date,
+                'end' => $reservation->departure_date,
+                'color' => $color,
+                'reservation_id' => $reservation->id, // aggiunto per vedere il nome della camera
+            ];
+        }
+
+        return response()->json($events);
     }
+
 
     public function showEventsInHtml() {
         $reservations = Reservation::all();
@@ -101,9 +103,8 @@ class ReservationController extends Controller
             ];
         }
 
-        return redirect()->route('reservations.events', ['events' => $events]);
+        return view('reservations.events', ['events' => $events]);
     }
-
 
 
 }

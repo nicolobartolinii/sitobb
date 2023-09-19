@@ -46,13 +46,11 @@ Route::resource('reservations', ReservationController::class);
 Route::get('/calendar', function () {
     return view('calendar');
 });
-
-Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
-Route::get('/reservations/events', [ReservationController::class, 'getReservationsForCalendar']);
+Route::get('/events', [ReservationController::class, 'getReservationsForCalendar']);
 
 
 
-Route::get('/reservations/show-events', [ReservationController::class, 'showEventsInHtml']);
+Route::get('/show-events', [ReservationController::class, 'showEventsInHtml']);
 
 Route::get('/test', function() {
     return 'Questa è una pagina di test';
