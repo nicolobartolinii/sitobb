@@ -73,10 +73,11 @@ class ReservationController extends Controller
             }
 
             $events[] = [
-                'title' => "Prenotato",
+                'title' => "Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number . "",
                 'start' => $reservation->arrival_date,
                 'end' => $reservation->departure_date,
                 'color' => $color,
+                'reservation_id' => $reservation->id, // aggiunto per vedere il nome della camera
             ];
         }
 

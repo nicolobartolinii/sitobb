@@ -22,10 +22,20 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                 },
-                events: '/sitobb/public/events'
+                events: '/sitobb/public/events',
+
+
+            eventClick: function(arg) {
+                const event = arg.event;
+                const reservationId = event.extendedProps.reservation_id;
+
+                // Reindirizza l'utente alla pagina dei dettagli dell'evento
+                window.location.href = `/sitobb/public/reservations/${reservationId}`;
+            }
             });
             calendar.render();
         });
+
     </script>
 
 

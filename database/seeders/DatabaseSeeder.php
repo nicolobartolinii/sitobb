@@ -21,24 +21,33 @@ class DatabaseSeeder extends Seeder {
                 'first_name' => 'Mario',
                 'last_name' => 'Rossi',
                 'email_address' => null,
-                'phone_number' => null,
+                'phone_number' => +393331234567,
             ],
             [
                 'first_name' => 'Luca',
                 'last_name' => 'Verdi',
                 'email_address' => null,
-                'phone_number' => null,
+                'phone_number' => +390031234567,
             ]
         ]);
         DB::table('rooms')->insert([
             [
-                'name' => 'Camera 1',
+                'name' => 'Camera doppia',
                 'capacity' => 2,
             ],
             [
-                'name' => 'Camera 2',
-                'capacity' => 1,
-            ]
+                'name' => 'Camera tripla',
+                'capacity' => 3,
+            ],
+            [
+            'name' => 'Camera quadrupla',
+            'capacity' => 4,
+            ],
+            [
+            'name' => 'Appartamento',
+            'capacity' => 4,
+        ]
+
             ]);
             DB::table('reservations')->insert([
                 [
@@ -58,7 +67,16 @@ class DatabaseSeeder extends Seeder {
                     'number_of_guests' => 1,
                     'under_14' => 0,
                     'amount_per_night' => 100.00,
-                ]
+                ],
+                [
+                'guest_id' => 2,
+                'room_id' => 2,
+                'arrival_date' => '2023-10-26',
+                'departure_date' => '2023-10-30',
+                'number_of_guests' => 2,
+                'under_14' => 0,
+                'amount_per_night' => 150.00,
+            ]
                 ]);
     }
 }
