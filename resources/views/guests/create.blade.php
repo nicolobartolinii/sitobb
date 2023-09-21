@@ -13,69 +13,77 @@
 <body>
 
     <h1>Inserisci un nuovo opsite</h1>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     {!! Form::open(['route' => 'guests.store', 'class' => 'form']) !!}
     @csrf
         <div>
             {!! Form::label('first_name', 'Nome:') !!}
             {!! Form::text('first_name', null, ['required']) !!}
         </div>
-    
+
         <div>
             {!! Form::label('last_name', 'Cognome:') !!}
             {!! Form::text('last_name', null, ['required']) !!}
         </div>
-    
+
         <div>
             {!! Form::label('email_address', 'Indirizzo email:') !!}
             {!! Form::email('email_address') !!}
         </div>
-    
+
         <div>
             {!! Form::label('phone_number', 'Telefono:') !!}
             {!! Form::tel('phone_number') !!}
         </div>
-    
+
         <div>
             {!! Form::label('nationality', 'Nazionalità:') !!}
             {!! Form::text('nationality') !!}
         </div>
-    
+
         <div>
             {!! Form::label('document_number', 'Numero documento:') !!}
             {!! Form::text('document_number') !!}
         </div>
-    
+
         <div>
             {!! Form::label('city', 'Comune di residenza:') !!}
             {!! Form::text('city') !!}
         </div>
-    
+
         <div>
             {!! Form::label('state', 'Provincia:') !!}
             {!! Form::text('state') !!}
         </div>
-    
+
         <div>
             {!! Form::label('zip_code', 'Codice postale:') !!}
             {!! Form::text('zip_code') !!}
         </div>
-    
+
         <div>
             {!! Form::label('address', 'Indirizzo:') !!}
             {!! Form::text('address') !!}
         </div>
-    
+
         <div>
             {!! Form::label('tax_id', 'Codice fiscale:') !!}
             {!! Form::text('tax_id') !!}
         </div>
-    
+
         <div>
             {!! Form::label('vat_number', 'Partita IVA:') !!}
             {!! Form::text('vat_number') !!}
         </div>
-    
+
         {!! Form::submit('Conferma') !!}
     {!! Form::close() !!}
 
