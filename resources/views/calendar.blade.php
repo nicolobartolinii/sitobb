@@ -6,6 +6,11 @@
             "imports": {
                 "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.8",
                 "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.8"
+                "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.8",
+            "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.8",
+            "@fullcalendar/resource-timeline": "https://cdn.skypack.dev/@fullcalendar/resource-timeline@6.1.8"
+        }
+    }
             }
         }
     </script>
