@@ -1,8 +1,8 @@
-@extends('layouts.public')
+{{--@extends('layouts.public')--}}
 
-@section('title', 'Registrazione')
+{{--@section('title', 'Registrazione')--}}
 
-@section('content')
+{{--@section('content')--}}
 <div class="static">
     <h3>Benvenuto nella area di login del sito  </h3>
     <p>Inserisci i tuoi dati </p>
@@ -12,7 +12,7 @@
             {{ Form::open(array('route' => 'login', 'class' => 'contact-form')) }}
 
              <div  class="wrap-input">
-                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>
+{{--                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>--}}
              </div>
              <div  class="wrap-input">
 {{--                 LARAVEL collective--}}
@@ -48,4 +48,4 @@
     </div>
 
 </div>
-@endsection
+{{--@endsection--}}

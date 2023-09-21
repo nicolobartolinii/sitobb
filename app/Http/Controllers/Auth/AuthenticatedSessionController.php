@@ -7,9 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// CONTROLLER PER L'AUTENTICAZIONE
-// qui va cambiata la vista dove è contenuta la form di login, dobbiamo cmabiare cosa accade alla fine del processo
-// di autenticazione, al termine della
+
 class AuthenticatedSessionController extends Controller {
 
     /**
@@ -37,15 +35,13 @@ class AuthenticatedSessionController extends Controller {
          */
 //        return redirect()->intended(RouteServiceProvider::HOME);
 
-
-// reindirizzamento qui ci vorrà membro senior
-        // metodo che estra tutto il profilo dell'utente registrato, estraiamo dall'utente il ruolo, estraiamo il metodo auth(),
-        // gestisce procedura, se ruolo è user va
         $role = auth()->user()->role;
         switch ($role) {
             case 'admin': return redirect()->route('admin');
                 break;
             case 'user': return redirect()->route('user');
+                break;
+            case 'staff': return redirect()->route('staff');
                 break;
             default: return redirect('/');
         }
@@ -57,7 +53,6 @@ class AuthenticatedSessionController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    // qui le regole stanno in un altra pagina in loginrequest
     public function destroy(Request $request) {
         Auth::guard('web')->logout();
 

@@ -12,19 +12,19 @@
 
     <div class="dashboard-container">
 
-        <a href="/guests" class="dashboard-block">
+        <a href="./guests" class="dashboard-block">
             <h2>Gestione ospiti</h2>
         </a>
 
-        <a href="/rooms" class="dashboard-block">
+        <a href="./rooms" class="dashboard-block">
             <h2>Gestione stanze</h2>
         </a>
 
-        <a href="/reservations" class="dashboard-block">
+        <a href="./reservations" class="dashboard-block">
             <h2>Gestione prenotazioni</h2>
         </a>
 
-        <a href="/calendar" class="dashboard-block">
+        <a href="./calendar" class="dashboard-block">
             <h2>Calendario prenotazioni</h2>
         </a>
 

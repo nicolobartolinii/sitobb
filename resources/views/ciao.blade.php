@@ -21,7 +21,12 @@
 
 <h1>Ciao a tutti!</h1>
 <p>Benvenuti al sito del B&B Il Gelso Nero.</p>
-
+<h1>Pagina home </h1>
+<li><a href="{{ route('login') }}" class="highlight" title="Accedi all'area riservata del sito">Login</a></li>
+<li><a href="" class="highlight" title="Logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    {{ csrf_field() }}
+</form>
 </body>
 
 </html>
