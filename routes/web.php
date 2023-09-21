@@ -41,10 +41,9 @@ Route::get('/dashboard', function () {
 
 Route::resource('rooms', RoomController::class);
 Route::resource('guests', GuestsController::class);
-//Route::get('rooms/{room}', [RoomController::class, 'show'])->name('rooms.show');
+
 Route::resource('reservations', ReservationController::class);
 
-//Route::resource('guests', GuestsController::class);
 
 
 Route::get('/calendar', function () {

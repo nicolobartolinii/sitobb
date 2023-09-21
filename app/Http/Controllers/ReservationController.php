@@ -26,10 +26,34 @@ class ReservationController extends Controller
 
     public function store(Request $request)
     {
-        // Qui potresti voler validare i dati della richiesta
+        $request->validate([
+            'guest_id' => 'required|exists:guests,guest_id',
+            'arrival_date' => 'required|date|date_format:Y-m-d|after_or_equal:2022-01-01|before_or_equal:2100-12-31',
+            'departure_date' => 'required|date|date_format:Y-m-d|after:arrival_date|before_or_equal:2100-12-31',
+            'room_id' => ['required', function ($attribute, $value, $fail) use ($request) {
+                $exists = Reservation::where('room_id', $value)
+                    ->where('arrival_date', '<=', $request->departure_date)
+                    ->where('departure_date', '>=', $request->arrival_date)
+                    ->exists();
+
+                if ($exists) {
+                    $fail('La stanza è già prenotata nelle date selezionate.');
+                }
+            }],
+            'number_of_guests' => ['required', 'integer', function ($attribute, $value, $fail) use ($request) {
+                $room = Room::find($request->room_id);
+                if ($room && $value > $room->capacity) {
+                    $fail('Il numero di persone supera la capacità della stanza.');
+                }
+            }],
+            'under_14' => 'required|integer|min:0',
+            'amount_per_night' => 'required|numeric|min:0',
+        ]);
+
         $reservation = Reservation::create($request->all());
         return redirect()->route('reservations.show', $reservation);
     }
+
 
     public function show(Reservation $reservation)
     {
