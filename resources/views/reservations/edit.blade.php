@@ -1,5 +1,14 @@
 {!! Form::model($reservation, ['route' => ['reservations.update', $reservation->id], 'method' => 'PUT']) !!}
-
+<h1>MODIFICA delle prenotazioni</h1>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div>
     {!! Form::label('guest_id', 'Ospite') !!}
     {!! Form::select('guest_id', $guests->pluck('first_name', 'guest_id'), null, ['placeholder' => 'Scegli un ospite...']) !!}

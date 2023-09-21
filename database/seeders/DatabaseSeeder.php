@@ -78,5 +78,52 @@ class DatabaseSeeder extends Seeder {
                 'amount_per_night' => 150.00,
             ]
                 ]);
+        DB::table('users')->insert([
+            [
+                'name' => "Monica",
+                'surname' => "Sforza",
+                'email' => "ilgelsonero.an@gmail.com",
+                'username' => 'MonicaMonica',
+                'password' => Hash::make('NicolaNicola'),
+                'role' => "staff",
+                'telefono' => "+39 3358049344",
+            ],
+            [
+                'name' => "Riccardo",
+                'surname' => "Picciafuoco",
+                'email' => "r.picciafuoco@libero.it",
+                'username' => 'RiccardoRiccardo',
+                'password' => Hash::make('NicolaNicola'),
+                'role' => "staff",
+                'telefono' => "+39 3487086076",
+            ],
+            [
+                'name' => "Nicolo",
+                'surname' => "Bartolini",
+                'email' => "",
+                'username' => 'NicoloNicolo',
+                'password' => Hash::make('NicolaNicola'),
+                'role' => "staff",
+                'telefono' => "",
+            ],
+            [
+                'name' => "Nicola",
+                'surname' => "Picciafuoco",
+                'email' => "nicola.picciafoco@gmail.com",
+                'username' => 'NicolaNicola',
+                'password' => Hash::make('NicolaNicola'),
+                'role' => "staff",
+                'telefono' => "",
+            ],
+            [
+                'name' => "admin",
+                'surname' => "admin",
+                'email' => "",
+                'username' => 'adminadmin',
+                'password' => Hash::make('adminadmin'),
+                'role' => "admin",
+                'telefono' => "+39 3358049344",
+            ],
+        ]);
     }
 }

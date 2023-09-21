@@ -51,10 +51,10 @@ Route::get('/calendar', function () {
 });
 Route::get('/events', [ReservationController::class, 'getReservationsForCalendar']);
 
-
-
 Route::get('/show-events', [ReservationController::class, 'showEventsInHtml']);
 
 Route::get('/test', function() {
     return 'Questa è una pagina di test';
 });
+
+require __DIR__.'/auth.php';
