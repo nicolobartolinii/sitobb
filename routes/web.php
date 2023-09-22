@@ -33,25 +33,27 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::view('/ciao', 'ciao');
+Route::view('/home', 'home')->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-});
+})->middleware('can:isStaff')->name('dashboard');
 
-Route::resource('rooms', RoomController::class);
-Route::resource('guests', GuestsController::class);
 
-Route::resource('reservations', ReservationController::class);
+Route::resource('rooms', RoomController::class)->middleware('can:isStaff');
+Route::resource('guests', GuestsController::class)->middleware('can:isStaff');
+
+Route::resource('reservations', ReservationController::class)->middleware('can:isStaff');
 
 
 
 Route::get('/calendar', function () {
     return view('calendar');
-});
-Route::get('/events', [ReservationController::class, 'getReservationsForCalendar']);
+})->middleware('can:isStaff');
 
-Route::get('/show-events', [ReservationController::class, 'showEventsInHtml']);
+Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
+
+Route::get('/show-events', [ReservationController::class, 'showEventsInHtml'])->middleware('can:isStaff');
 
 Route::get('/test', function() {
     return 'Questa è una pagina di test';

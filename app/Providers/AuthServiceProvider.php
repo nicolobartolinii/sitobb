@@ -24,20 +24,20 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-// admin per admin
+// per admin, user e staff
         Gate::define('isAdmin', function ($user) {
-            return $user->hasRole('admin');// immagine di eloquent della tupla del db, qui verifico se l'utente loggato a un ruolo dell'admin
-            // discorso analogo per tutti gli altri
+            return $user->hasRole('admin');
         });
 
-// per utente
         Gate::define('isUser', function ($user) {
             return $user->hasRole('user');
         });
-// per far vedere il prezzo dei prodotti a catalogo
+        Gate::define('isStaff', function ($user) {
+            return $user->hasRole('staff');
+        });
 
         Gate::define('show-discount', function ($user) {
-            return $user->hasRole(['user', 'admin']);// qui mi controlla sia se è admin sia se è user
+            return $user->hasRole(['user', 'admin','staff']);
         });
     }
 }

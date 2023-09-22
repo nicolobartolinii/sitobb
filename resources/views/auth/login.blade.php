@@ -12,7 +12,7 @@
             {{ Form::open(array('route' => 'login', 'class' => 'contact-form')) }}
 
              <div  class="wrap-input">
-{{--                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>--}}
+                 <p> Se non hai già un account <a  href="{{ route('register') }}">registrati</a></p>
              </div>
              <div  class="wrap-input">
 {{--                 LARAVEL collective--}}

@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder {
                 'email' => "nicola.picciafoco@gmail.com",
                 'username' => 'NicolaNicola',
                 'password' => Hash::make('NicolaNicola'),
-                'role' => "staff",
+                'role' => "Staff",
                 'telefono' => "",
             ],
             [
