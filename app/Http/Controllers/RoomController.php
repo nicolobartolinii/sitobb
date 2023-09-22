@@ -57,4 +57,10 @@ class RoomController extends Controller
         $room->delete();
         return redirect()->route('rooms.index')->with('success', 'Stanza eliminata con successo.');
     }
+    public function listRooms()
+    {
+        $rooms = Room::getAllRooms();
+        return view('calendaroom', ['rooms' => $rooms]);
+    }
+
 }
