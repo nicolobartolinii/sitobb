@@ -7,6 +7,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,9 @@ use App\Http\Controllers\UserController;
 
 Route::view('/home', 'home')->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('can:isStaff')->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])
+    ->middleware('can:isStaff')
+    ->name('dashboard');
 
 
 Route::resource('rooms', RoomController::class)->middleware('can:isStaff');

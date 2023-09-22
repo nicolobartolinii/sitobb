@@ -1,5 +1,9 @@
 {{-- resources/views/rooms/edit.blade.php --}}
 
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
+
     <h1>Modifica Stanza: {{ $room->name }}</h1>
 
     <form action="{{ route('rooms.update', $room) }}" method="post">

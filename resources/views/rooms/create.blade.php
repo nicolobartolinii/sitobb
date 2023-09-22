@@ -1,5 +1,8 @@
 {{-- resources/views/rooms/create.blade.php --}}
 
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
 
     <h1>Crea Nuova Stanza</h1>
 

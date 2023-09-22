@@ -1,4 +1,8 @@
 
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
+
 <h1>Reservation</h1>
 {!! Form::open(['route' => 'guests.store', 'method' => 'POST']) !!}
 

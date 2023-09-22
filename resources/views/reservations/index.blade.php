@@ -1,6 +1,10 @@
 
 {{-- resources/views/reservations/index.blade.php --}}
 
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
+
     <h1>Elenco Prenotazioni</h1>
     <a href="{{ route('reservations.create') }}">Nuova Prenotazione</a>
     <ul>

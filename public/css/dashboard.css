@@ -11,33 +11,30 @@ a {
   text-decoration: none;
 }
 
-.dashboard-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
 .dashboard-block {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  color: #2980b9; /* Colore principale, come nelle pagine precedenti */
-  background-color: #fff; /* Colore di sfondo leggermente grigio per distinguere i blocchi */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera per dare profondità */
-  transition: transform 0.2s;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  min-height: 200px; /* Altezza minima per mantenere tutti i blocchi della stessa dimensione */
+  color: #2980b9; /* Colore primario */
 }
 
 .dashboard-block:hover {
-  transform: scale(1.05); /* Ingrandimento leggero per l'effetto hover */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }
 
 .dashboard-block h2 {
-  font-size: 1.5em;
+  margin-top: 0;
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: inherit; /* Usa il colore primario del blocco */
+}
+
+.dashboard-block p {
   margin: 0;
-  font-weight: 500; /* Peso normale, non troppo grassetto ma neanche troppo leggero */
+  font-size: 18px;
+  color: inherit; /* Usa il colore primario del blocco */
 }

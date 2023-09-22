@@ -1,6 +1,8 @@
 {{-- resources/views/rooms/index.blade.php --}}
 
-
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
 
 
     <h1>Lista delle Stanze</h1>

@@ -91,4 +91,11 @@ class GuestsController extends Controller
         $guest->delete();
         return redirect()->route('guests.index')->with('success', 'Ospite eliminato con successo.');
     }
+
+    public function dashboard() {
+        $guestCount = Guest::count();
+        dd($guestCount);
+        $latestGuest = Guest::latest()->first();
+        return view('dashboard', ['guestCount' => $guestCount, 'latestGuest' => $latestGuest]);
+    }
 }

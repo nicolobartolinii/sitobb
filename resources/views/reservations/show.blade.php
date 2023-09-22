@@ -1,5 +1,8 @@
 {{-- resources/views/reservations/show.blade.php --}}
 
+@if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
 
 <h1>Dettagli Prenotazione</h1>
 <p>ID Prenotazione: {{ $reservation->id }}</p>

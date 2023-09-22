@@ -12,6 +12,10 @@
 </head>
 <body>
 
+    @if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
+
     <h1>Modifica ospite</h1>
     @if ($errors->any())
         <div class="alert alert-danger">

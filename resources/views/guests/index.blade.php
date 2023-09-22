@@ -12,6 +12,10 @@
 </head>
 <body>
 
+    @if(Auth::check())
+    @include('layouts/_navstaff')
+    @endif
+
     <div class="container">
 
         <h1>Elenco ospiti</h1>
