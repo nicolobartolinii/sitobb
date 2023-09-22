@@ -110,36 +110,50 @@ class ReservationController extends Controller
 
 
     public function getReservationsForCalendar() {
-        $reservations = Reservation::all();
+        // Aggiunto l'eager loading per le relazioni guest e room
+        $reservations = Reservation::with(['guest', 'room'])->get();
+        // Stampa e interrompi l'esecuzione qui
+//        dd($reservations);
         $events = [];
 
-        foreach($reservations as $reservation) {
+        foreach ($reservations as $reservation) {
+            $roomName = $reservation->room ? $reservation->room->name : 'Stanza non trovata';
+            // Determina il colore in base all'ID della stanza
             $color = 'red'; // default color
-
-            // per colorare ma non ci riesco
-            if($reservation->room_id == 1) {
-                $color = 'blue';
-            }
-            if($reservation->room_id == 2) {
-                $color = 'green';
+            switch ($reservation->room_id) {
+                case 1:
+                    $color = 'blue';
+                    break;
+                case 2:
+                    $color = 'green';
+                    break;
+                case 3:
+                    $color = 'dark';
+                    break;
+                case 4:
+                    $color = 'yellow';
+                    break;
+                // Puoi aggiungere altri case qui per altre stanze se necessario
             }
 
             $events[] = [
-                'title' => "Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number . "",
+                'title' => "Stanza: " . $roomName. " - Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number,
                 'start' => $reservation->arrival_date,
                 'end' => $reservation->departure_date,
                 'color' => $color,
-                'reservation_id' => $reservation->id, // aggiunto per vedere il nome della camera
+                'reservation_id' => $reservation->id,
             ];
         }
 
         return response()->json($events);
     }
+
     public function getReservationsByRoom($roomId) {
         $reservations = Reservation::where('room_id', $roomId)->get();
         $events = [];
 
         foreach ($reservations as $reservation) {
+
             $events[] = [
                 'title' => "Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number,
                 'start' => $reservation->arrival_date,

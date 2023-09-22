@@ -62,7 +62,10 @@ Route::get('/calendaroom', function () {
 Route::get('/events/{roomId}', [ReservationController::class, 'getReservationsByRoom'])->middleware('can:isStaff');
 // rotta per avere le camere dinamicamente nelle opzioni del calendario
 //Route::get('/rooms', [ReservationController::class, 'getAllRooms']);
-Route::get('/rooms', [RoomController::class, 'listRooms']);
+Route::get('/roomscalendar', [RoomController::class, 'listRooms'])->middleware('can:isStaff');;
+
+// rotta per avere tutti i calendari in un unica vista
+Route::get('/all-calendars', [RoomController::class, 'showAllCalendars'])->middleware('can:isStaff');;
 
 Route::get('/show-events', [ReservationController::class, 'showEventsInHtml'])->middleware('can:isStaff');
 

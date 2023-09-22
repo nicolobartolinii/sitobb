@@ -62,5 +62,10 @@ class RoomController extends Controller
         $rooms = Room::getAllRooms();
         return view('calendaroom', ['rooms' => $rooms]);
     }
+    public function showAllCalendars()
+    {
+        $rooms = Room::all();
+        return view('all-calendars', ['rooms' => $rooms]);
+    }
 
 }

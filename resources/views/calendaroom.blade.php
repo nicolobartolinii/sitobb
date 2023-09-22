@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+@if(Auth::check())
+    @include('layouts/_navstaff')
+@endif
 <html>
 <head>
     <meta charset="UTF-8">

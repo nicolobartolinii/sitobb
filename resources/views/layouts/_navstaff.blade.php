@@ -28,6 +28,12 @@
         <li class="nav-item">
           <a class="nav-link" href="./calendar">Calendario</a>
         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./roomscalendar">Calendario Stanza</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="./all-calendars">Calendari</a>
+          </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         @auth
@@ -41,4 +47,3 @@
       </ul>
     </div>
   </nav>
-  
