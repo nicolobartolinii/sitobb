@@ -1,9 +1,9 @@
 {{-- resources/views/reservations/create.blade.php --}}
-
+<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 @if(Auth::check())
 @include('layouts/_navstaff')
 @endif
-<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+
 
 <h1>Nuova Prenotazione</h1>
 
