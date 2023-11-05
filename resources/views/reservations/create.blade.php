@@ -67,3 +67,6 @@
 </div>
 
 {!! Form::close() !!}
+<div class="nota-bene">
+    <p><strong>Nota Bene:</strong> QAUNDO SI INSERISCE IL NUMERO DI PERSONE VANNO COMPRESI I MINORI DI 14 ANNI, POI VERRA' SPECIFICATO IN SEGUITO QUANTI MINORI CI SONO</p>
+</div>
