@@ -11,6 +11,7 @@ use App\Models\Room;
 
 class ReservationController extends Controller
 {
+    // viene applicata una ricerca per date
     public function index(Request $request)
     {
         $query = Reservation::query();
