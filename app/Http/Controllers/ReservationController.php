@@ -17,9 +17,15 @@ class ReservationController extends Controller
 
         // Filtra per data se specificato
         if ($request->filled(['start_date', 'end_date'])) {
-            $query->where('arrival_date', '>=', $request->input('start_date'))
-                ->where('departure_date', '<=', $request->input('end_date'));
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+
+            $query->where(function ($query) use ($startDate, $endDate) {
+                $query->where('arrival_date', '<=', $endDate)
+                    ->where('departure_date', '>=', $startDate);
+            });
         }
+
 
         // Filtra per nome e cognome se specificato
         if ($request->filled('first_name')) {
