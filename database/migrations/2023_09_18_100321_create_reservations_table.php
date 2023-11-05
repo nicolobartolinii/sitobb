@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer('number_of_guests'); // numero persone
             $table->integer('under_14'); // under 14
             $table->decimal('amount_per_night', 8, 2); // importo a notte
-            $table->string('note', 150)->nullable();
+            $table->string('note', 180)->nullable();
+            $table->boolean('from_booking')->default(false); // Aggiunto campo booleano con default a false
         });
     }
 

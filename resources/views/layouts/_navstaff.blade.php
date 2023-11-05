@@ -17,13 +17,13 @@
           <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./guests">Gestione ospiti</a>
+          <a class="nav-link" href={{ route('guests.index') }}>Gestione ospiti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./rooms">Gestione stanze</a>
+          <a class="nav-link" href={{ route('rooms.index') }}>Gestione stanze</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./reservations">Gestione prenotazioni</a>
+          <a class="nav-link" href={{ route('reservations.index') }}>Gestione prenotazioni</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="./calendar">Calendario</a>

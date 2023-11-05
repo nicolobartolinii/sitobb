@@ -19,7 +19,7 @@
     <div class="container">
 
         <h1>Elenco ospiti</h1>
-    
+
         <table class="custom-table">
             <thead>
                 <tr>
@@ -65,9 +65,9 @@
                 @endforeach
             </tbody>
         </table>
-    
+
         <a href="{{ route('guests.create') }}" class="action-btn edit">Inserisci un nuovo opsite</a>
-    
+
     </div>
 
 </body>

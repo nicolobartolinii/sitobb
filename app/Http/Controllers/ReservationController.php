@@ -11,11 +11,35 @@ use App\Models\Room;
 
 class ReservationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $reservations = Reservation::all();
+        $query = Reservation::query();
+
+        // Filtra per data se specificato
+        if ($request->filled(['start_date', 'end_date'])) {
+            $query->where('arrival_date', '>=', $request->input('start_date'))
+                ->where('departure_date', '<=', $request->input('end_date'));
+        }
+
+        // Filtra per nome e cognome se specificato
+        if ($request->filled('first_name')) {
+            $query->whereHas('guest', function ($query) use ($request) {
+                $query->where('first_name', 'like', '%' . $request->input('first_name') . '%');
+            });
+        }
+
+        if ($request->filled('last_name')) {
+            $query->whereHas('guest', function ($query) use ($request) {
+                $query->where('last_name', 'like', '%' . $request->input('last_name') . '%');
+            });
+        }
+
+        $reservations = $query->with('guest', 'room')->get();
+
+
         return view('reservations.index', ['reservations' => $reservations]);
     }
+
 
     public function create()
     {
@@ -24,6 +48,7 @@ class ReservationController extends Controller
         return view('reservations.create', ['rooms' => $rooms, 'guests' => $guests]);
     }
 
+// Funzione per il salvataggio di una prenotazione
     public function store(Request $request)
     {
 
@@ -50,15 +75,17 @@ class ReservationController extends Controller
             }],
             'under_14' => 'required|integer|min:0',
             'amount_per_night' => 'required|numeric|min:10',
+            'note' => 'nullable|string|max:150',
         ]);
 
         $reservation = Reservation::create($request->all());
         return redirect()->route('reservations.show', $reservation);
     }
 
-
+// mi mostra le mie prenotazioni
     public function show(Reservation $reservation)
     {
+        $reservation->load('guest', 'room');
         return view('reservations.show', ['reservation' => $reservation]);
     }
 
@@ -94,6 +121,7 @@ class ReservationController extends Controller
             }],
             'under_14' => 'required|integer|min:0',
             'amount_per_night' => 'required|numeric|min:10',
+            'note' => 'nullable|string|max:150',
         ]);
 
         $reservation->update($request->all());
@@ -128,10 +156,10 @@ class ReservationController extends Controller
                     $color = 'green';
                     break;
                 case 3:
-                    $color = 'dark';
+                    $color = 'violet';
                     break;
                 case 4:
-                    $color = 'yellow';
+                    $color = 'red';
                     break;
                 // Puoi aggiungere altri case qui per altre stanze se necessario
             }

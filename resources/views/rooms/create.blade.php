@@ -1,5 +1,5 @@
 {{-- resources/views/rooms/create.blade.php --}}
-
+<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 @if(Auth::check())
     @include('layouts/_navstaff')
     @endif

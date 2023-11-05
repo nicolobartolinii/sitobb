@@ -3,6 +3,7 @@
 @if(Auth::check())
 @include('layouts/_navstaff')
 @endif
+<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 
 <h1>Nuova Prenotazione</h1>
 
@@ -54,6 +55,12 @@
     {!! Form::number('amount_per_night', null, ['class' => 'form-control', 'step' => '0.01', 'required' => 'required'])
     !!}
 </div>
+
+<div class="form-group">
+    {!! Form::label('note', 'Note') !!}
+    {!! Form::text('note', null) !!}
+</div>
+
 
 <div class="form-group">
     {!! Form::submit('Salva', ['class' => 'btn btn-primary']) !!}

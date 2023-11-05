@@ -1,4 +1,6 @@
-{!! Form::model($reservation, ['route' => ['reservations.update', $reservation->id], 'method' => 'PUT']) !!}
+<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+
+
 
 @if(Auth::check())
 @include('layouts/_navstaff')
@@ -52,7 +54,10 @@
     {!! Form::label('amount_per_night', 'Importo a Notte') !!}
     {!! Form::number('amount_per_night', null, ['step' => '0.01', 'required' => 'required']) !!}
 </div>
-
+<div class="form-group">
+    {!! Form::label('note', 'Note') !!}
+    {!! Form::text('note', null) !!}
+</div>
 <div>
     {!! Form::submit('Aggiorna Prenotazione') !!}
 </div>

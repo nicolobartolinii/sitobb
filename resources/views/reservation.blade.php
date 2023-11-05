@@ -2,6 +2,7 @@
 @if(Auth::check())
     @include('layouts/_navstaff')
     @endif
+<link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 
 <h1>Reservation</h1>
 {!! Form::open(['route' => 'guests.store', 'method' => 'POST']) !!}
@@ -26,7 +27,12 @@
     {!! Form::text('phone_number', null, ['class' => 'form-control', 'maxlength' => 50]) !!}
 </div>
 
-... // Puoi continuare con gli altri campi in modo simile
+<div class="form-group">
+    {!! Form::label('note', 'Note') !!}
+    {!! Form::text('note', null) !!}
+</div>
+
+
 
 <div class="form-group">
     {!! Form::submit('Add Guest', ['class' => 'btn btn-primary']) !!}
