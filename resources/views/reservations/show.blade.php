@@ -14,7 +14,8 @@
 <p>Numero Persone Under 14: {{ $reservation->under_14 }}</p>
 <p>Importo a notte: €{{ number_format($reservation->amount_per_night, 2, ',', '.') }}</p>
 <p>Note sulla prenotazione: {{ $reservation->note }}</p>
-
+<p>Tassa di soggiorno: {{ $reservation->tassa_soggiorno ? 'Sì' : 'No' }}</p>
+<p>Prenotazione da Booking: {{ $reservation->from_booking ? 'Sì' : 'No' }}</p>
 <a href="{{ route('reservations.edit', $reservation) }}">Modifica</a>
 
 <form action="{{ route('reservations.destroy', $reservation) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare questa prenotazione?');">

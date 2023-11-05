@@ -32,12 +32,12 @@
 
 <div>
     {!! Form::label('arrival_date', 'Data Arrivo') !!}
-    {!! Form::date('arrival_date', null, ['required' => 'required']) !!}
+    {!! Form::date('arrival_date', $reservation->arrival_date->format('Y-m-d'), ['required' => 'required']) !!}
 </div>
 
 <div>
     {!! Form::label('departure_date', 'Data Partenza') !!}
-    {!! Form::date('departure_date', null, ['required' => 'required']) !!}
+    {!! Form::date('departure_date', $reservation->departure_date->format('Y-m-d'), ['required' => 'required']) !!}
 </div>
 
 <div>
@@ -57,6 +57,16 @@
 <div class="form-group">
     {!! Form::label('note', 'Note') !!}
     {!! Form::text('note', null) !!}
+</div>
+<div class="checkbox">
+    {!! Form::hidden('tassa_soggiorno', 0) !!} {{-- invia 0 se la checkbox non è selezionata --}}
+    {!! Form::checkbox('tassa_soggiorno', 1, null, ['id' => 'tassa_soggiorno']) !!}
+    {!! Form::label('tassa_soggiorno', 'Tassa di Soggiorno') !!}
+</div>
+<div class="checkbox">
+    {!! Form::hidden('from_booking', 0) !!} {{-- invia 0 se la checkbox non è selezionata --}}
+    {!! Form::checkbox('from_booking', 1, null, ['id' => 'from_booking']) !!}
+    {!! Form::label('from_booking', 'Booking') !!}
 </div>
 <div>
     {!! Form::submit('Aggiorna Prenotazione') !!}

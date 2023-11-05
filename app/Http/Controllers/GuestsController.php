@@ -120,6 +120,8 @@ class GuestsController extends Controller
         $totalPresences = 0;
 
         foreach ($reservations as $reservation) {
+        // Controlla se la tassa di soggiorno è applicata per questa prenotazione
+        if ($reservation->tassa_soggiorno) {
             // Calcola il numero di notti per questa prenotazione
             $nights = $reservation->departure_date->diffInDays($reservation->arrival_date);
 
@@ -129,6 +131,7 @@ class GuestsController extends Controller
             // Calcola le presenze per questa prenotazione e aggiungile al totale
             $totalPresences += $nights * $guestsOver14;
         }
+    }
 
         return view('form', compact('totalPresences', 'startDate', 'endDate'));
     }

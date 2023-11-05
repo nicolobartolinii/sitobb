@@ -76,7 +76,11 @@ class ReservationController extends Controller
             'under_14' => 'required|integer|min:0',
             'amount_per_night' => 'required|numeric|min:10',
             'note' => 'nullable|string|max:150',
+            'tassa_soggiorno' => 'boolean',
+            'from_booking' => 'boolean',
         ]);
+        $validatedData['tassa_soggiorno'] = $request->has('tassa_soggiorno');
+        $validatedData['from_booking'] = $request->has('from_booking');
 
         $reservation = Reservation::create($request->all());
         return redirect()->route('reservations.show', $reservation);
@@ -122,7 +126,11 @@ class ReservationController extends Controller
             'under_14' => 'required|integer|min:0',
             'amount_per_night' => 'required|numeric|min:10',
             'note' => 'nullable|string|max:150',
+            'tassa_soggiorno' => 'boolean',
+            'from_booking' => 'boolean',
         ]);
+        $validatedData['tassa_soggiorno'] = $request->has('tassa_soggiorno');
+        $validatedData['from_booking'] = $request->has('from_booking');
 
         $reservation->update($request->all());
 

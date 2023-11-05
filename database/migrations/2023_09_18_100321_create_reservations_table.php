@@ -26,6 +26,7 @@ return new class extends Migration
             $table->decimal('amount_per_night', 8, 2); // importo a notte
             $table->string('note', 180)->nullable();
             $table->boolean('from_booking')->default(false); // Aggiunto campo booleano con default a false
+            $table->boolean('tassa_soggiorno')->default(false); // Aggiunto campo booleano con default a false
         });
     }
 

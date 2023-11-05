@@ -31,6 +31,17 @@
     {!! Form::label('note', 'Note') !!}
     {!! Form::text('note', null) !!}
 </div>
+<div class="checkbox">
+    {!! Form::hidden('tassa_soggiorno', 0) !!} {{-- invia 0 se la checkbox non è selezionata --}}
+    {!! Form::checkbox('tassa_soggiorno', 1, null, ['id' => 'tassa_soggiorno']) !!}
+    {!! Form::label('tassa_soggiorno', 'Tassa di Soggiorno') !!}
+</div>
+<div class="checkbox">
+    {!! Form::hidden('from_booking', 0) !!} {{-- invia 0 se la checkbox non è selezionata --}}
+    {!! Form::checkbox('from_booking', 1, null, ['id' => 'from_booking']) !!}
+    {!! Form::label('from_booking', 'Booking') !!}
+</div>
+
 
 
 
