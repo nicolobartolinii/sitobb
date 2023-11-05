@@ -67,8 +67,14 @@
         </table>
 
         <a href="{{ route('guests.create') }}" class="action-btn edit">Inserisci un nuovo opsite</a>
+        <a href="{{ route('form') }}" class="action-btn edit">Conteggio Presenze Ospiti</a>
+
 
     </div>
 
 </body>
 </html>
+
+
+<!-- Add this somewhere in your <body> -->
+

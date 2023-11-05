@@ -72,5 +72,12 @@ Route::get('/show-events', [ReservationController::class, 'showEventsInHtml'])->
 Route::get('/test', function() {
     return 'Questa è una pagina di test';
 });
+// Questa rotta mostra la form all'utente
+Route::get('/form',[ GuestsController::class, 'showForm'])->name('form');
+
+// Questa rotta gestisce i dati inviati dalla form
+Route::get('/count', [GuestsController::class, 'countGuests'])->name('count');
+
+
 
 require __DIR__.'/auth.php';

@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guest;
+use App\Models\Reservation;
 
 class GuestsController extends Controller
 {
 
-    public function index()
-    {
-        $guests = Guest::all();
-        return view('guests.index', ['guests' => $guests]);
-    }
+
 
     public function create()
     {
@@ -98,4 +95,43 @@ class GuestsController extends Controller
         $latestGuest = Guest::latest()->first();
         return view('dashboard', ['guestCount' => $guestCount, 'latestGuest' => $latestGuest]);
     }
+    public function index()
+    {
+        $guests = Guest::all(); // Assicurati di avere un modello Guest corrispondente
+        return view('guests.index', compact('guests'));
+    }
+
+    public function showForm()
+    {
+        // Restituisce la vista che contiene la form per inserire le date
+        return view('form');
+    }
+
+    public function countGuests(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Calcola il totale delle presenze come il numero di notti moltiplicato per il numero di ospiti sopra i 14 anni per ogni prenotazione nell'intervallo di date
+        $reservations = Reservation::where('arrival_date', '>=', $startDate)
+            ->where('departure_date', '<=', $endDate)
+            ->get();
+
+        $totalPresences = 0;
+
+        foreach ($reservations as $reservation) {
+            // Calcola il numero di notti per questa prenotazione
+            $nights = $reservation->departure_date->diffInDays($reservation->arrival_date);
+
+            // Assumi che `number_of_guests` sia il numero totale di ospiti e `under_14` sia il numero di ospiti sotto i 14 anni
+            $guestsOver14 = $reservation->number_of_guests - $reservation->under_14;
+
+            // Calcola le presenze per questa prenotazione e aggiungile al totale
+            $totalPresences += $nights * $guestsOver14;
+        }
+
+        return view('form', compact('totalPresences', 'startDate', 'endDate'));
+    }
+
+
 }
