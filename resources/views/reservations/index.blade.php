@@ -7,20 +7,12 @@
 
 <h1>Elenco Prenotazioni</h1>
 <a href="{{ route('reservations.create') }}">Nuova Prenotazione</a>
-<ul>
-    @foreach ($reservations as $reservation)
-        <li>
-            Prenotazione per {{ $reservation->guest->first_name }} {{ $reservation->guest->last_name }}
-            per {{ $reservation->number_of_guests }} persone
-            dal {{ $reservation->arrival_date->format('d/m/Y') }}
-            al {{ $reservation->departure_date->format('d/m/Y') }}
-            - Totale: €{{ $reservation->amount_per_night * $reservation->departure_date->diffInDays($reservation->arrival_date) }}
-            <a href="{{ route('reservations.show', $reservation) }}">Dettagli</a>
-            <a href="{{ route('reservations.edit', $reservation) }}">Modifica</a>
-        </li>
-    @endforeach
-</ul>
 
+
+
+
+
+<h1>Ricerca prenotazione</h1>
 <form action="{{ route('reservations.index') }}" method="GET">
     <div class="form-group">
         <label for="first_name">Nome:</label>

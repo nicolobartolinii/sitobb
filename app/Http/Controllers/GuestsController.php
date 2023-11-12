@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use \Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guest;
@@ -91,15 +91,33 @@ class GuestsController extends Controller
 
     public function dashboard() {
         $guestCount = Guest::count();
-        dd($guestCount);
+
         $latestGuest = Guest::latest()->first();
         return view('dashboard', ['guestCount' => $guestCount, 'latestGuest' => $latestGuest]);
     }
-    public function index()
+    public function index(Request $request)
     {
-        $guests = Guest::all(); // Assicurati di avere un modello Guest corrispondente
+        // ricerca per nome, congome, numero di telefono
+        $guests = Guest::query();
+
+        if ($request->has('name')) {
+            $guests->where('first_name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->has('surname')) {
+            $guests->where('last_name', 'like', '%' . $request->input('surname') . '%');
+        }
+
+        if ($request->has('phone')) {
+            $guests->where('phone_number', 'like', '%' . $request->input('phone') . '%');
+        }
+
+        $guests = $guests->get();
+
         return view('guests.index', compact('guests'));
     }
+
+
 
     public function showForm()
     {

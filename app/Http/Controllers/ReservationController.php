@@ -48,12 +48,20 @@ class ReservationController extends Controller
     }
 
 
-    public function create()
+    public function create(Request $request)
     {
         $rooms = Room::all();
         $guests = Guest::all();
-        return view('reservations.create', ['rooms' => $rooms, 'guests' => $guests]);
+        $selectedGuestId = $request->query('guest_id', null);
+        //dd($request->all()); //per assicurarti che il valore sia quello che ti aspetti.
+        return view('reservations.create', [
+            'rooms' => $rooms,
+            'guests' => $guests,
+            'selectedGuestId' => $selectedGuestId
+        ]);
     }
+
+
 
 // Funzione per il salvataggio di una prenotazione
     public function store(Request $request)

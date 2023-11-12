@@ -44,12 +44,16 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])
 Route::resource('rooms', RoomController::class)->middleware('can:isStaff');
 Route::resource('guests', GuestsController::class)->middleware('can:isStaff');
 
+Route::get('/reservations/create/{guest_id?}', [ReservationController::class, 'create'])->name('reservations.create');
+
 Route::resource('reservations', ReservationController::class)->middleware('can:isStaff');
+//Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 
 
 
 Route::get('/calendar', function () {
     return view('calendar');
+
 })->middleware('can:isStaff');
 
 Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');

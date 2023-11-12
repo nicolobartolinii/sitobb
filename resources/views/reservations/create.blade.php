@@ -1,5 +1,7 @@
 {{-- resources/views/reservations/create.blade.php --}}
 <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+<!-- Inserisci questi link nel tag <head> della tua vista -->
+
 @if(Auth::check())
 @include('layouts/_navstaff')
 @endif
@@ -19,9 +21,8 @@
 {!! Form::open(['route' => 'reservations.store']) !!}
 
 <div class="form-group">
-    {!! Form::label('guest_id', 'Ospite') !!}
-    {!! Form::select('guest_id', $guests->pluck('full_name', 'guest_id'), null, ['class' => 'form-control', 'required'
-    => 'required']) !!}
+    {!! Form::select('guest_id', $guests->pluck('full_name', 'guest_id'), $selectedGuestId, ['class' => 'form-control', 'required' => 'required']) !!}
+
 </div>
 
 <div class="form-group">
