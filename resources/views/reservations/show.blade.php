@@ -6,9 +6,8 @@
     @endif
 
 <h1>Dettagli Prenotazione</h1>
-<p>ID Prenotazione: {{ $reservation->id }}</p>
 <p>Ospite: {{ $reservation->guest->first_name. ' ' . $reservation->guest->last_name }}</p>
-<p>Stanza: {{ $reservation->room_id }}</p>
+<p>Stanza: {{ $reservation->room->name }}</p>
 <p>Data Arrivo: {{ $reservation->arrival_date}}</p>
 <p>Data Partenza: {{ $reservation->departure_date}}</p>
 <p>Numero Persone: {{ $reservation->number_of_guests }}</p>
