@@ -29,6 +29,10 @@
           <a class="nav-link" href="./calendar">Calendario</a>
         </li>
           <li class="nav-item">
+              <a class="nav-link" href="{{ route('calendar') }}">Calendario2</a>
+          </li>
+
+          <li class="nav-item">
               <a class="nav-link" href="./roomscalendar">Calendario Stanza</a>
           </li>
           <li class="nav-item">

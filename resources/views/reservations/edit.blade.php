@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 
-
+<h1>MODIFICA delle prenotazioni</h1>
 
 @if(Auth::check())
 @include('layouts/_navstaff')
 @endif
 
 {!! Form::model($reservation, ['route' => ['reservations.update', $reservation->id], 'method' => 'PUT']) !!}
-<h1>MODIFICA delle prenotazioni</h1>
+
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>

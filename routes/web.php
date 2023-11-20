@@ -8,6 +8,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +54,11 @@ Route::resource('reservations', ReservationController::class)->middleware('can:i
 
 Route::get('/calendar', function () {
     return view('calendar');
-
 })->middleware('can:isStaff');
+
+// rotta di prova per il calendario
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+
 
 Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
 
