@@ -16,7 +16,17 @@ class ReservationController extends Controller
     {
         $query = Reservation::query();
 
-        // Filtra per data se specificato
+        // Controlla se sono stati forniti parametri di ricerca nel form
+        $isSearching = $request->filled('first_name') || $request->filled('last_name') || $request->filled(['start_date', 'end_date']);
+
+        // Applica il filtro predefinito solo se non ci sono parametri di ricerca
+        if (!$isSearching) {
+            $today = now()->format('Y-m-d');
+            $query->where('arrival_date', '<=', $today)
+                ->where('departure_date', '>=', $today);
+        }
+
+        // Applica i filtri in base ai parametri di ricerca
         if ($request->filled(['start_date', 'end_date'])) {
             $startDate = $request->input('start_date');
             $endDate = $request->input('end_date');
@@ -27,8 +37,6 @@ class ReservationController extends Controller
             });
         }
 
-
-        // Filtra per nome e cognome se specificato
         if ($request->filled('first_name')) {
             $query->whereHas('guest', function ($query) use ($request) {
                 $query->where('first_name', 'like', '%' . $request->input('first_name') . '%');
@@ -43,9 +51,9 @@ class ReservationController extends Controller
 
         $reservations = $query->with('guest', 'room')->get();
 
-
         return view('reservations.index', ['reservations' => $reservations]);
     }
+
 
 
     public function create(Request $request)
