@@ -1,5 +1,5 @@
 {{-- resources/views/reservations/show.blade.php --}}
-Use Carbon\Carbon;
+
 <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
 @if(Auth::check())
     @include('layouts/_navstaff')

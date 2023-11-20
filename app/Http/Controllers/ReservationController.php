@@ -215,9 +215,9 @@ class ReservationController extends Controller
 
             $events[] = [
                 'title' => "Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number,
-                'start' => $reservation->arrival_date,
-                'end' => $reservation->departure_date,
-                'color' => 'red', // Puoi anche stabilire un colore specifico per ogni stanza se desideri
+                'start' => \Carbon\Carbon::createFromFormat('d/m/Y', $reservation->arrival_date)->format('Y-m-d'),
+                'end' => \Carbon\Carbon::createFromFormat('d/m/Y', $reservation->departure_date)->format('Y-m-d'),
+                'color' => 'red', // Posso cambiare colore in base a quello che voglio
                 'reservation_id' => $reservation->id,
             ];
         }
