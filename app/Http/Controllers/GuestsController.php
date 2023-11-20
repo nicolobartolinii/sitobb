@@ -97,7 +97,7 @@ class GuestsController extends Controller
     }
     public function index(Request $request)
     {
-        // ricerca per nome, congome, numero di telefono
+        // ricerca per nome, cognome, numero di telefono
         $guests = Guest::query();
 
         if ($request->has('name')) {
@@ -112,10 +112,17 @@ class GuestsController extends Controller
             $guests->where('phone_number', 'like', '%' . $request->input('phone') . '%');
         }
 
-        $guests = $guests->get();
+        // Usiamo paginate invece di get
+        $guests = $guests->paginate(5); // Imposta qui il numero di elementi per pagina che desideri
+
+        // Se siamo in una richiesta di paginazione, manteniamo i parametri di ricerca
+        if ($request->has('name') || $request->has('surname') || $request->has('phone')) {
+            $guests->appends($request->only('name', 'surname', 'phone'));
+        }
 
         return view('guests.index', compact('guests'));
     }
+
 
 
 
