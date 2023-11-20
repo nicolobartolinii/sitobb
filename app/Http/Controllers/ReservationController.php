@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Guest;
 use App\Models\Room;
-
+use carbon\carbon;
 
 class ReservationController extends Controller
 {
@@ -197,8 +197,8 @@ class ReservationController extends Controller
 
             $events[] = [
                 'title' => "Stanza: " . $roomName. " - Prenotato da: " . $reservation->guest->first_name . " " . $reservation->guest->last_name . " Numero: " . $reservation->guest->phone_number,
-                'start' => $reservation->arrival_date,
-                'end' => $reservation->departure_date,
+                'start' => \Carbon\Carbon::createFromFormat('d/m/Y', $reservation->arrival_date)->format('Y-m-d'),
+                'end' => \Carbon\Carbon::createFromFormat('d/m/Y', $reservation->departure_date)->format('Y-m-d'),
                 'color' => $color,
                 'reservation_id' => $reservation->id,
             ];

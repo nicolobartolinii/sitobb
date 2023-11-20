@@ -32,12 +32,12 @@
 
 <div>
     {!! Form::label('arrival_date', 'Data Arrivo') !!}
-    {!! Form::date('arrival_date', $reservation->arrival_date->format('Y-m-d'), ['required' => 'required']) !!}
+    {!! Form::date('arrival_date', $reservation->arrival_date, ['required' => 'required']) !!}
 </div>
 
 <div>
     {!! Form::label('departure_date', 'Data Partenza') !!}
-    {!! Form::date('departure_date', $reservation->departure_date->format('Y-m-d'), ['required' => 'required']) !!}
+    {!! Form::date('departure_date', $reservation->departure_date, ['required' => 'required']) !!}
 </div>
 
 <div>
