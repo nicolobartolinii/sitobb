@@ -57,23 +57,21 @@ Route::get('/calendar', function () {
 })->middleware('can:isStaff');
 
 // rotta di prova per il calendario
-Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
-
-
-Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
-
-// rotta per il calendario per camera
-Route::get('/calendaroom', function () {
-    return view('calendaroom');
-})->middleware('can:isStaff');
-// rotta per avere i file json da utilizzare per ogni camera
-Route::get('/events/{roomId}', [ReservationController::class, 'getReservationsByRoom'])->middleware('can:isStaff');
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar')->middleware('can:isStaff');
 // rotta per avere le camere dinamicamente nelle opzioni del calendario
 //Route::get('/rooms', [ReservationController::class, 'getAllRooms']);
-Route::get('/roomscalendar', [RoomController::class, 'listRooms'])->middleware('can:isStaff');;
+Route::get('/roomscalendar', [RoomController::class, 'listRooms'])->name("calendario_stanza")->middleware('can:isStaff');;
+Route::get('/events/{roomId}', [ReservationController::class, 'getReservationsByRoom'])->middleware('can:isStaff');
+
+
+
 
 // rotta per avere tutti i calendari in un unica vista
-Route::get('/all-calendars', [RoomController::class, 'showAllCalendars'])->middleware('can:isStaff');;
+Route::get('/all-calendars', [RoomController::class, 'showAllCalendars'])->name("calendari")->middleware('can:isStaff');;
+Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
+// rotta per avere i file json da utilizzare per ogni camera
+
+
 
 Route::get('/show-events', [ReservationController::class, 'showEventsInHtml'])->middleware('can:isStaff');
 
