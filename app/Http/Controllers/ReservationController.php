@@ -82,8 +82,8 @@ class ReservationController extends Controller
 
             'room_id' => ['required', function ($attribute, $value, $fail) use ($request) {
                 $exists = Reservation::where('room_id', $value)
-                    ->where('arrival_date', '<=', $request->departure_date)
-                    ->where('departure_date', '>=', $request->arrival_date)
+                    ->where('arrival_date', '<', $request->departure_date)
+                    ->where('departure_date', '>', $request->arrival_date)
                     ->exists();
 
                 if ($exists) {
@@ -132,8 +132,8 @@ class ReservationController extends Controller
             'room_id' => ['required', function ($attribute, $value, $fail) use ($request, $reservation) {
                 $exists = Reservation::where('room_id', $value)
                     ->where('id', '!=', $reservation->id) // Escludo  la prenotazione corrente
-                    ->where('arrival_date', '<=', $request->departure_date)
-                    ->where('departure_date', '>=', $request->arrival_date)
+                    ->where('arrival_date', '<', $request->departure_date)
+                    ->where('departure_date', '>', $request->arrival_date)
                     ->exists();
 
                 if ($exists) {
