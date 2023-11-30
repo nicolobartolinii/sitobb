@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use \Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Guest;
+use App\Models\Reservation;
 
 class GuestsController extends Controller
 {
 
-    public function index()
-    {
-        $guests = Guest::all();
-        return view('guests.index', ['guests' => $guests]);
-    }
+
 
     public function create()
     {
@@ -94,8 +91,75 @@ class GuestsController extends Controller
 
     public function dashboard() {
         $guestCount = Guest::count();
-        dd($guestCount);
+
         $latestGuest = Guest::latest()->first();
         return view('dashboard', ['guestCount' => $guestCount, 'latestGuest' => $latestGuest]);
     }
+    public function index(Request $request)
+    {
+        // ricerca per nome, cognome, numero di telefono
+        $guests = Guest::query();
+
+        if ($request->has('name')) {
+            $guests->where('first_name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        if ($request->has('surname')) {
+            $guests->where('last_name', 'like', '%' . $request->input('surname') . '%');
+        }
+
+        if ($request->has('phone')) {
+            $guests->where('phone_number', 'like', '%' . $request->input('phone') . '%');
+        }
+
+        // Usiamo paginate invece di get
+        $guests = $guests->paginate(5); // Imposta qui il numero di elementi per pagina che desideri
+
+        // Se siamo in una richiesta di paginazione, manteniamo i parametri di ricerca
+        if ($request->has('name') || $request->has('surname') || $request->has('phone')) {
+            $guests->appends($request->only('name', 'surname', 'phone'));
+        }
+
+        return view('guests.index', compact('guests'));
+    }
+
+
+
+
+    public function showForm()
+    {
+        // Restituisce la vista che contiene la form per inserire le date
+        return view('form');
+    }
+
+    public function countGuests(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Calcola il totale delle presenze come il numero di notti moltiplicato per il numero di ospiti sopra i 14 anni per ogni prenotazione nell'intervallo di date
+        $reservations = Reservation::where('arrival_date', '>=', $startDate)
+            ->where('departure_date', '<=', $endDate)
+            ->get();
+
+        $totalPresences = 0;
+
+        foreach ($reservations as $reservation) {
+        // Controlla se la tassa di soggiorno è applicata per questa prenotazione
+        if ($reservation->tassa_soggiorno) {
+            // Calcola il numero di notti per questa prenotazione
+            $nights = $reservation->departure_date->diffInDays($reservation->arrival_date);
+
+            // Assumi che `number_of_guests` sia il numero totale di ospiti e `under_14` sia il numero di ospiti sotto i 14 anni
+            $guestsOver14 = $reservation->number_of_guests - $reservation->under_14;
+
+            // Calcola le presenze per questa prenotazione e aggiungile al totale
+            $totalPresences += $nights * $guestsOver14;
+        }
+    }
+
+        return view('form', compact('totalPresences', 'startDate', 'endDate'));
+    }
+
+
 }

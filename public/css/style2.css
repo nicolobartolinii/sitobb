@@ -1,43 +1,3 @@
-/* dashboard.css */
-
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #f4f4f4; /* Sfondo leggermente grigio per contrastare il bianco dei blocchi */
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-.dashboard-block {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  min-height: 200px; /* Altezza minima per mantenere tutti i blocchi della stessa dimensione */
-  color: #2980b9; /* Colore primario */
-}
-
-.dashboard-block:hover {
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-}
-
-.dashboard-block h2 {
-  margin-top: 0;
-  font-size: 24px;
-  margin-bottom: 16px;
-  color: inherit; /* Usa il colore primario del blocco */
-}
-
-.dashboard-block p {
-  margin: 0;
-  font-size: 18px;
-  color: inherit; /* Usa il colore primario del blocco */
-}
 /* Reset CSS */
 * {
     margin: 0;
@@ -189,4 +149,128 @@ form {
     h1 {
         font-size: 24px;
     }
+}
+/* Assicurati che questo CSS sia dopo l'inclusione di Bootstrap per sovrascrivere i suoi stili */
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Per dispositivi con schermi più piccoli */
+@media (max-width: 768px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.grid { margin: 0 auto; max-width: 1200px; display: flex; flex-flow: row; flex-wrap: wrap;}
+.grid--center{justify-content: center;}
+
+.col{ flex: 1;}
+
+[class*='col-'] { position: relative;}
+
+.col-20{ width: 20%; }
+.col-25{ width: 25%; }
+.col-30{ width: 30%; }
+.col-33{ width: 33.33%; }
+.col-40{ width: 40%; }
+.col-50{ width: 50%; }
+.col-60{ width: 60%; }
+.col-70{ width: 70%; }
+.col-80{ width: 80%; }
+.col-90{ width: 90%; }
+.col-100{ width: 100%; }
+
+@media (max-width: 991px) {
+
+    .tab-20 { width: 20%; }
+    .tab-25 { width: 25%; }
+    .tab-33 { width: 33.33%; }
+    .tab-40 { width: 40%; }
+    .tab-50 { width: 50%; }
+    .tab-100 { width: 100%; }
+}
+
+@media (max-width: 768px) {
+    [class*='col-'] { width: 100%;}
+    .sma-20 { width: 20%; }
+    .sma-25 { width: 25%; }
+    .sma-33 { width: 33.33%; }
+    .sma-50 { width: 50%; }
+    .sma-100 { width: 100%; }
+
+    .sma-hide{display:none}
+}
+
+
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }

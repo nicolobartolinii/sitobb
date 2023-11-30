@@ -104,3 +104,10 @@ h1 {
 .action-btn:active {
   transform: scale(0.95);
 }
+.spazio {
+    height: 50px; /* Corretta unità di misura */
+    border: 3px solid red; /* Proprietà shorthand che include spessore, stile e colore */
+    marigin-bottom: 20px; /* Proprietà errata */
+}
+
+/* Path: public/css/guests/index.css */

@@ -17,24 +17,26 @@
           <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./guests">Gestione ospiti</a>
+          <a class="nav-link" href={{ route('guests.index') }}>Gestione ospiti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./rooms">Gestione stanze</a>
+          <a class="nav-link" href={{ route('rooms.index') }}>Gestione stanze</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./reservations">Gestione prenotazioni</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./calendar">Calendario</a>
+          <a class="nav-link" href={{ route('reservations.index') }}>Gestione prenotazioni</a>
         </li>
           <li class="nav-item">
-              <a class="nav-link" href="./roomscalendar">Calendario Stanza</a>
+              <a class="nav-link" href="{{ route('calendar') }}">Calendario</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="./all-calendars">Calendari</a>
+              <a class="nav-link" href="{{ route('calendario_stanza') }}">Calendario Stanza</a>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('calendari') }}">Calendari</a>
           </li>
       </ul>
+
       <ul class="navbar-nav ml-auto">
         @auth
           <li class="nav-item">

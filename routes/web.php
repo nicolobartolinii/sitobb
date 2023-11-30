@@ -8,6 +8,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,10 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])
 Route::resource('rooms', RoomController::class)->middleware('can:isStaff');
 Route::resource('guests', GuestsController::class)->middleware('can:isStaff');
 
+Route::get('/reservations/create/{guest_id?}', [ReservationController::class, 'create'])->name('reservations.create');
+
 Route::resource('reservations', ReservationController::class)->middleware('can:isStaff');
+//Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
 
 
 
@@ -52,25 +56,34 @@ Route::get('/calendar', function () {
     return view('calendar');
 })->middleware('can:isStaff');
 
-Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
-
-// rotta per il calendario per camera
-Route::get('/calendaroom', function () {
-    return view('calendaroom');
-})->middleware('can:isStaff');
-// rotta per avere i file json da utilizzare per ogni camera
-Route::get('/events/{roomId}', [ReservationController::class, 'getReservationsByRoom'])->middleware('can:isStaff');
+// rotta di prova per il calendario
+Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar')->middleware('can:isStaff');
 // rotta per avere le camere dinamicamente nelle opzioni del calendario
 //Route::get('/rooms', [ReservationController::class, 'getAllRooms']);
-Route::get('/roomscalendar', [RoomController::class, 'listRooms'])->middleware('can:isStaff');;
+Route::get('/roomscalendar', [RoomController::class, 'listRooms'])->name("calendario_stanza")->middleware('can:isStaff');;
+Route::get('/events/{roomId}', [ReservationController::class, 'getReservationsByRoom'])->middleware('can:isStaff');
+
+
+
 
 // rotta per avere tutti i calendari in un unica vista
-Route::get('/all-calendars', [RoomController::class, 'showAllCalendars'])->middleware('can:isStaff');;
+Route::get('/all-calendars', [RoomController::class, 'showAllCalendars'])->name("calendari")->middleware('can:isStaff');;
+Route::get('/events', [ReservationController::class, 'getReservationsForCalendar'])->middleware('can:isStaff');
+// rotta per avere i file json da utilizzare per ogni camera
+
+
 
 Route::get('/show-events', [ReservationController::class, 'showEventsInHtml'])->middleware('can:isStaff');
 
 Route::get('/test', function() {
     return 'Questa è una pagina di test';
 });
+// Questa rotta mostra la form all'utente
+Route::get('/form',[ GuestsController::class, 'showForm'])->name('form');
+
+// Questa rotta gestisce i dati inviati dalla form
+Route::get('/count', [GuestsController::class, 'countGuests'])->name('count');
+
+
 
 require __DIR__.'/auth.php';
